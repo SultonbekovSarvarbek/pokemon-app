@@ -3,31 +3,25 @@ import VueRouter from 'vue-router';
 import home from '../views/Home.vue';
 // PokemonDetails
 import pokemonDetails from '../views/pokemonDetails';
-// PokemonAbilities
-import pokemonAbilitiesLink from '../views/pokemonAbilitiesLink';
+// PokemonAbilitiesLink
+import pokemonAbilitiesLink from '../components/pokemonAbilitiesLink';
+// pokemonAbilities
 import pokemonAbilities from '../views/pokemonAbilities';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/allpokemons',
+    path: '/',
     name: 'Home',
     component: home,
   },
   {
     path: '/pokemondetails/:id',
-
     component: pokemonDetails,
-    children: [
-      {
-        path: '/',
-        component: pokemonAbilitiesLink,
-      },
-    ],
   },
   {
-    path: '/pokemondetails/:id/abilities/:id',
+    path: '/pokemondetails/:id/abilities/:abilitiesid',
     component: pokemonAbilities,
   },
 ];

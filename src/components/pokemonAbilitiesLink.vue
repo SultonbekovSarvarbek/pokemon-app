@@ -7,7 +7,7 @@
     >
       <router-link
         :to="parentFullPath + '/abilities/' + filterUrl(item.ability.url)"
-        >{{ index + 1 }}.See abilities
+        >{{ index + 1 }}. See abilities
       </router-link>
     </div>
   </div>
@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: "pokemonAbilitiesLink",
   data() {
     return {
       data: {},

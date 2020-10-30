@@ -3,12 +3,9 @@
     <nav>
       <ul>
         <li>
-          <button data-hover="Go Home">
-            <div>
-              <router-link class="main-header__link" to="/allpokemons"
-                >Home</router-link
-              >
-            </div>
+          {{ this.$router.fullPath }}
+          <button data-hover="Go Home" @click="gohome">
+            <div class="main-header__link">Home</div>
           </button>
         </li>
       </ul>
@@ -17,7 +14,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    gohome() {
+      if (this.$route.path != "/") {
+        this.$router.push("/");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped lang="less">
@@ -34,17 +39,6 @@ export default {};
 a:hover {
   border-bottom: 1px solid #111;
 }
-h1 {
-  font-size: 2em;
-  padding: 20px 0;
-}
-p {
-  font-size: 0.75em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 20px 0;
-}
-
 button:hover {
   cursor: pointer;
 }
@@ -56,8 +50,6 @@ button {
   padding: 15px 50px;
   overflow: hidden;
 }
-
-/*button:before (attr data-hover)*/
 button:hover:before {
   opacity: 1;
   transform: translate(0, 0);

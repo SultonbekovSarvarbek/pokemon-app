@@ -29,19 +29,21 @@ export default {
   opacity: 0;
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import url("https://pro.fontawesome.com/releases/v5.12.0/css/all.css");
 </style>
 <style lang="less">
-@import "https://pro.fontawesome.com/releases/v5.12.0/css/all.css";
-
 html {
   box-sizing: border-box;
 }
 body {
   background-color: #c7ccde;
 }
-* {
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
 }
 .container {
   max-width: 1200px;
@@ -49,11 +51,6 @@ body {
   padding: 0 10px 0 10px;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 #app {
   font-family: "Montserrat", sans-serif;
   margin: 2rem 0;
@@ -61,19 +58,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 // btn style
 .btn {
@@ -87,9 +71,9 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
-}
-.btn:hover {
-  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .backeffect {
@@ -101,7 +85,6 @@ body {
   transition-duration: 0.4s;
   overflow: hidden;
 }
-
 .backeffect::before,
 .backeffect span {
   margin: 0 auto;

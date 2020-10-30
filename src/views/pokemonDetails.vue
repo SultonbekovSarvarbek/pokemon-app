@@ -11,62 +11,31 @@
         <figure class="card card--normal">
           <div class="card__image-container">
             <img
-              v-if="data.sprites !== undefined"
-              :src="data.sprites.front_default"
+              v-if="getDetails.sprites !== undefined"
+              :src="getDetails.sprites.front_default"
               alt=""
             />
           </div>
 
           <figcaption class="card__caption">
-            <h1 class="card__name">{{ data.name }}</h1>
-
-            <!-- <table class="card__stats">
-              <tbody>
-                <tr>
-                  <th>HP</th>
-                  <td>55</td>
-                </tr>
-                <tr>
-                  <th>Attack</th>
-                  <td>55</td>
-                </tr>
-
-                <tr>
-                  <th>Defense</th>
-                  <td>50</td>
-                </tr>
-
-                <tr>
-                  <th>Special Attack</th>
-                  <td>45</td>
-                </tr>
-                <tr>
-                  <th>Special Defense</th>
-                  <td>65</td>
-                </tr>
-                <tr>
-                  <th>Speed</th>
-                  <td>55</td>
-                </tr>
-              </tbody>
-            </table> -->
-
+            <h1 class="card__name">{{ getDetails.name }}</h1>
             <div class="card__abilities">
               <h4 class="card__ability">
                 <span class="card__label">Ability</span>
-                <p v-for="(item, index) in data.abilities" :key="item.id">
+                <p v-for="(item, index) in getDetails.abilities" :key="item.id">
                   {{ index + 1 }}. {{ item.ability.name }}
                 </p>
               </h4>
               <h4 class="card__ability">
                 <span class="card__label">Types</span>
-                <p v-for="(item, index) in data.types" :key="item.id">
+                <p v-for="(item, index) in getDetails.types" :key="item.id">
                   {{ index + 1 }}. {{ item.type.name }}
                 </p>
               </h4>
             </div>
             <h1 class="card__link">See more</h1>
-            <router-view :parentFullPath="this.$route.fullPath"> </router-view>
+            <pokemonAbilitiesLink :parentFullPath="this.$route.fullPath" />
+            <!-- <router-view :parentFullPath="this.$route.fullPath"> </router-view> -->
           </figcaption>
         </figure>
       </div>
@@ -75,15 +44,20 @@
 </template>
 
 <script>
+import pokemonAbilitiesLink from "../components/pokemonAbilitiesLink";
 export default {
+  name: "pokemonDetails",
   data() {
     return {};
+  },
+  components: {
+    pokemonAbilitiesLink,
   },
   async created() {
     await this.$store.dispatch("getPokemonDetails", this.$route.params.id);
   },
   computed: {
-    data() {
+    getDetails() {
       return this.$store.getters.getAllPokemonDetails;
     },
   },
